@@ -4,6 +4,7 @@ package com.author.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ import com.author.service.AuthorService;
 
 @RestController
 @RequestMapping("/api/v1/digitalbooks/author")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
 	
 	@Autowired
@@ -49,7 +51,7 @@ public class AuthController {
 		
 //	}
 	
-	@GetMapping("/login") // author can login 
+	@PostMapping("/login") // author can login 
 	public ResponseDTO loginAuthor(@RequestBody LoginDTO loginDTO) {
 		ResponseDTO responseDto = new ResponseDTO();
 
@@ -64,6 +66,7 @@ public class AuthController {
 		return responseDto;
 	}
 	//author create account.
+//	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/signup")
 	public Author createAuthor(@RequestBody Author author) {
 		return authorService.createNewAuthor(author);
@@ -73,8 +76,8 @@ public class AuthController {
 	//author can make any changes:
 	@PutMapping("/updateauthentity{authorId}")
 	public Author updateBlockUNblockBookHist(@PathVariable int authorId) {
-		authorService.updateAuthorDetails(authorId);
-		return null;
+		Author author = authorService.updateAuthorDetails(authorId);
+		return author;
 		
 		
 	}

@@ -16,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.author.filters.JwtRequestFilter;
 
@@ -27,7 +29,7 @@ import com.author.filters.JwtRequestFilter;
 @Configuration
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class MySecurityConfig {
+public class MySecurityConfig  {
 
 	@Autowired
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
@@ -41,6 +43,18 @@ public class MySecurityConfig {
 		auth.userDetailsService(jwtUserDetailsService);
 //        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	}
+	
+//	@Override
+//	public void addCorsMappings(CorsRegistry registry) {
+//		// TODO Auto-generated method stub
+//		registry.addMapping("/**")
+//        .allowedOrigins("http://localhost:4200")
+//        .allowedMethods("*")
+//        .maxAge(3600L)
+//        .allowedHeaders("*")
+//        .exposedHeaders("Authorization")
+//        .allowCredentials(true);
+//	}
 
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
@@ -74,5 +88,7 @@ public class MySecurityConfig {
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		return httpSecurity.build();
 	}
+	
+	
 //
 }

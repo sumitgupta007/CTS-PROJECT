@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+
 import com.reader.Service.ReaderService;
+import com.reader.entity.ErrorMesages;
 import com.reader.entity.Subscription;
+import com.reader.exception.ReaderException;
 import com.reader.model.Book;
 
 @RestController
@@ -101,5 +105,20 @@ public class ReaderController {
 		
 		
 	}
+	
+//	@ExceptionHandler(ReaderException.class)
+//	public String handleReaderException(ReaderException me) {
+//		return "ReaderException: "+me.getMessage();
+//	}
+//	
+//	
+//	@ExceptionHandler(ReaderException.class)
+//	public ErrorMesages  handleReaderException1(ReaderException me) {
+//		return new ErrorMesages(
+//			"ReaderException: "+me.getMessage(), 
+//			me.getClass().toString(), 
+//			"Something bad happened, please try after some time"
+//		);
+//	}
 
 }

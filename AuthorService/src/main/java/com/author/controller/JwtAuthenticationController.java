@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 //import com.demo.utils.JwtTokenUtil;
 
 @RestController
-@CrossOrigin
+//@CrossOrigin
 public class JwtAuthenticationController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
